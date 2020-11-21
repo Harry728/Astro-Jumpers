@@ -8,7 +8,6 @@ public class Meteor : MonoBehaviour
 
     void Awake()
     {
-        Transform target = GameObject.FindWithTag("Player").transform;
         Rotator rotator = gameObject.GetComponent<Rotator>();
         rotator.enabled = true;
     }
