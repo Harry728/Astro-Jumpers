@@ -898,8 +898,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48152da71e16645f08238102d3c58f7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1
-  minSpeed: 1
+  speed: 0.1
+  minSpeed: 0.1
   target: {x: 0, y: 0, z: 0}
 --- !u!114 &863175571
 MonoBehaviour:
@@ -913,7 +913,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ed15e59fa0f04bbbaba7d3d3abb4902, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0.3
+  speed: 0.2
 --- !u!114 &863175572
 MonoBehaviour:
   m_ObjectHideFlags: 0
