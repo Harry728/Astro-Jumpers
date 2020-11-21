@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Meteor : MonoBehaviour
 {
+    [SerializeField] GameObject explosion = null;
+
     void Awake()
     {
         Transform target = GameObject.FindWithTag("Player").transform;
@@ -14,6 +16,10 @@ public class Meteor : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag.Equals("Bumper")) {
+            if (explosion != null) {
+                Vector3 point = other.ClosestPoint(transform.position);
+                Instantiate (explosion, point, Quaternion.identity, null);
+            }
             Destroy(gameObject);
         }
     }
