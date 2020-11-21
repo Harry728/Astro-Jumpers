@@ -111,7 +111,6 @@ MonoBehaviour:
   - {fileID: 4893985935920840622, guid: 4acaefe5424e24fb892c1c985000efc6, type: 3}
   locations:
   - {fileID: 8842665695432606486}
-  minFrequency: 1
-  maxFrequency: 1
-  maxNumber: 20
-  targets: []
+  minFrequency: 5
+  maxFrequency: 20
+  maxNumber: 4
