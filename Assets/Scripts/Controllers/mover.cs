@@ -2,15 +2,25 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class mover : MonoBehaviour
+public class Mover : MonoBehaviour
 {
-    [SerializeField] Transform target = null;
-    [Range (0, 1)]
+    [Range (0, 100)]
     [SerializeField] float speed = 1f;
+    [Range (0, 100)]
+    [SerializeField] float minSpeed = 1f;
+
+    public Vector3 target;
+
+    private void Awake()
+    {
+        if (minSpeed > 0) {
+            speed = Random.Range(speed, minSpeed);
+        }
+    }
 
     void Update()
     {
         transform.position =
-            Vector3.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
+            Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
     }
 }

@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class rotator : MonoBehaviour
+public class Rotator : MonoBehaviour
 {
-    [Range(0, 15)]
+    [Range(0, 45)]
     [SerializeField] float angle = 15f;
-    [Range(0, 15)]
+    [Range(0, 50)]
     [SerializeField] float speed = 10f;
 
     private Vector3 rotationAngles = Vector3.zero;
@@ -20,6 +20,6 @@ public class rotator : MonoBehaviour
 
     void Update()
     {
-        transform.RotateAround(transform.position, rotationAngles, speed * Time.deltaTime);
+        transform.Rotate(rotationAngles.x, rotationAngles.y, rotationAngles.z, Space.Self);
     }
 }

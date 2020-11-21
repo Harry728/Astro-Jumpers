@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class spawner : MonoBehaviour
+public class Spawner : MonoBehaviour
 {
     [SerializeField] GameObject[] meteors;
     [SerializeField] Transform[] locations;
@@ -13,8 +13,9 @@ public class spawner : MonoBehaviour
     [Range (1, 50)]
     [SerializeField] int maxNumber = 5;
 
-    float nextSpawnDelay = 0f;
+    GameObject[] targets;
     IEnumerator coroutine;
+    float nextSpawnDelay = 0f;
 
     void Start()
     {
@@ -25,17 +26,13 @@ public class spawner : MonoBehaviour
         {
             Destroy(this);
         }
+        targets = GameObject.FindGameObjectsWithTag("Target");
         if (maxFrequency <= minFrequency) {
             maxFrequency = minFrequency + 1;
         }
         GetSpawnDelay();
         coroutine = Spawn();
         StartCoroutine(coroutine);
-    }
-
-    void Update()
-    {
-        
     }
 
     private void GetSpawnDelay()
@@ -48,10 +45,26 @@ public class spawner : MonoBehaviour
         while (true) {
             yield return new WaitForSeconds(nextSpawnDelay);
             GetSpawnDelay();
-            if (GameObject.FindGameObjectsWithTag("Meteor").Length < maxNumber) {
-                Instantiate(meteors[Random.Range(0, meteors.Length - 1)],
+            Vector3 target = GetTargetPosition();
+            if (transform.childCount < maxNumber) {
+                GameObject spawned = Instantiate(meteors[Random.Range(0, meteors.Length - 1)],
                             locations[Random.Range(0, locations.Length - 1)]);
+                Meteor meteor = spawned.GetComponent<Meteor>();
+                meteor.SetTarget(target);
             }
         }
+    }
+
+    private Vector3 GetTargetPosition()
+    {
+        GameObject plane = targets[Random.Range(0,targets.Length - 1)];
+        Vector3 min = plane.GetComponent<MeshFilter>().mesh.bounds.min;
+        Vector3 max = plane.GetComponent<MeshFilter>().mesh.bounds.max;
+
+        Vector3 target = plane.transform.position - 
+                            new Vector3 ((Random.Range(min.x*5, max.x*5)),
+                                            plane.transform.position.y,
+                                            (Random.Range(min.z*5, max.z*5)));
+        return target;
     }
 }
