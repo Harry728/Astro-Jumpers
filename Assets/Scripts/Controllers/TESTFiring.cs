@@ -5,12 +5,14 @@ using UnityEngine;
 public class TESTFiring : MonoBehaviour
 {
     [SerializeField] GameObject projectile = null;
-    [SerializeField] Transform spawnPoint;
+    [SerializeField] Transform[] spawnPoints;
     [SerializeField] float force = 50;
 
-    void FireLeft()
+    void Fire(int spawnIndex)
     {
-        GameObject bullet = Instantiate(projectile, spawnPoint.position, projectile.transform.rotation, null);
-        bullet.GetComponent<Rigidbody>().AddForce(Vector3.forward * force, ForceMode.Impulse);
+        Transform spawnPoint = spawnPoints[spawnIndex];
+
+        GameObject bullet = Instantiate(projectile, spawnPoint.position, spawnPoint.transform.rotation, null);
+        bullet.GetComponent<Rigidbody>().AddForce(spawnPoint.transform.forward * force, ForceMode.Impulse);
     }
 }
