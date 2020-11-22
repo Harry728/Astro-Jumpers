@@ -1223,7 +1223,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectile: {fileID: 82928690123645555, guid: 3d55debe41bbb40b4ae4329aca7c3211,
     type: 3}
-  spawnPoint: {fileID: 1420429776}
+  spawnPoints:
+  - {fileID: 1420429776}
+  - {fileID: 1768407764}
   force: 200
 --- !u!1 &1116473563
 GameObject:
