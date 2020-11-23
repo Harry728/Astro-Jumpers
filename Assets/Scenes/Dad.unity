@@ -248,7 +248,7 @@ GameObject:
   m_Component:
   - component: {fileID: 18012469}
   m_Layer: 0
-  m_Name: Silo2
+  m_Name: Special Weapon2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -279,7 +279,7 @@ GameObject:
   m_Component:
   - component: {fileID: 23692545}
   m_Layer: 0
-  m_Name: Silo1
+  m_Name: Special Weapon1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -621,6 +621,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 335146767}
+  - component: {fileID: 335146768}
+  - component: {fileID: 335146769}
   m_Layer: 0
   m_Name: Weapon Battery
   m_TagString: Untagged
@@ -645,6 +647,35 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &335146768
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 335146766}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a628294a13a74733ac0e71b14391af4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  specialWeaponSilos:
+  - {fileID: 919132149500138669}
+  - {fileID: 1740717711}
+--- !u!114 &335146769
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 335146766}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08f7cdac06169406cae5a11b816b1031, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  specialWeapons:
+  - {fileID: 190058697042664655, guid: bddcafc17c7624e3ab47bba9d3f03edc, type: 3}
 --- !u!4 &352413788 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8842665695432606486, guid: 53887e219b3754d82b86fb6857d65d7f,
@@ -2406,7 +2437,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1680830109
 Transform:
   m_ObjectHideFlags: 0
@@ -2646,6 +2677,12 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8842665695432606486, guid: 53887e219b3754d82b86fb6857d65d7f,
     type: 3}
   m_PrefabInstance: {fileID: 1602720789}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1740717711 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5155914878604256248, guid: 8724dee9535cf4bd587b658dac6735b1,
+    type: 3}
+  m_PrefabInstance: {fileID: 806345666}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1767834984
 GameObject:
@@ -3192,6 +3229,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 5425734269307942741}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &919132149500138669 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5155914878604256248, guid: 8724dee9535cf4bd587b658dac6735b1,
+    type: 3}
+  m_PrefabInstance: {fileID: 5425734269307942741}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &3032278231320039021
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3348,15 +3391,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7738267865595814739, guid: 8724dee9535cf4bd587b658dac6735b1,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 0e8c6efee10194a3d98183afda73028d, type: 2}
     - target: {fileID: 8378640005534246371, guid: 8724dee9535cf4bd587b658dac6735b1,
         type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -4
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 270
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8724dee9535cf4bd587b658dac6735b1, type: 3}
