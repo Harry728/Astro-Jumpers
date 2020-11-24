@@ -7,14 +7,18 @@ public class SpecialWeapon : MonoBehaviour
     enum ACTIONS {NONE, SPINUP, HOVER, LAUNCH};
 
     public GameObject prefab = null;
-    public float spinUpDuration = 10f;
-    public float hoverDuration = 3f;
+    [SerializeField] float spinUpDuration = 10f;
+    [SerializeField] float hoverDuration = 3f;
+    [SerializeField] float proximityTolerance = 0.1f;
+    [SerializeField] float maxJudder = 0.1f;
     
     int siloIndex = -1;
     Silo silo = null;
     int action = -1;
     float timer = 0f;
     float actionTime = 0f;
+    float distance = 0f;
+    Vector3 hoverPosition = Vector3.zero;
 
     private void Start() 
     {
@@ -29,7 +33,9 @@ public class SpecialWeapon : MonoBehaviour
         }
         timer += Time.deltaTime;
         if (action == (int) ACTIONS.SPINUP) {
-            //SpinUp();
+            SpinUp();
+        } else if (action == (int) ACTIONS.HOVER) {
+            Hover();
         }
      }
 
@@ -38,14 +44,27 @@ public class SpecialWeapon : MonoBehaviour
         this.siloIndex = siloIndex;
         this.silo = silo;
     }
-/*
+
     void SpinUp()
     {
-        transform.position = transform.position.MoveTowards(transform.position,
-                                                            silo.hoverPoint.position,
-                                                            Vector3.Distance(silo.hoverPoint.position,
-                                                                transform.position)
-                                                            / (spinUpDuration / Time.fixedDeltaTime));
+        if (distance == 0f) {
+            distance = Vector3.Distance(silo.hoverPoint.position,
+                                        transform.position)
+                                        / (spinUpDuration / Time.fixedDeltaTime);
+        }
+        transform.position = Vector3.MoveTowards(transform.position,
+                                                   silo.hoverPoint.position,
+                                                   distance);
+        if (Mathf.Abs(Vector3.Distance(silo.hoverPoint.position, transform.position)) <= proximityTolerance) {
+            action = (int) ACTIONS.HOVER;
+            hoverPosition = transform.position;
+        } 
     }
-*/
+
+    void Hover()
+    {
+        transform.position = new Vector3(hoverPosition.x += Random.Range(-maxJudder, maxJudder),
+                                         hoverPosition.y += Random.Range(-maxJudder, +maxJudder),
+                                         hoverPosition.z += Random.Range(-maxJudder, +maxJudder));
+    }
 }
