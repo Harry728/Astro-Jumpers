@@ -676,6 +676,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   specialWeapons:
   - {fileID: 190058697042664655, guid: bddcafc17c7624e3ab47bba9d3f03edc, type: 3}
+  pause: 20
 --- !u!4 &352413788 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8842665695432606486, guid: 53887e219b3754d82b86fb6857d65d7f,
@@ -1191,6 +1192,36 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 806345666}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &821784591
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 821784592}
+  m_Layer: 0
+  m_Name: MoonTarget
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &821784592
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 821784591}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 20.4, z: -31.3}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1689243727}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &863175566 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 07251eb4b61814307b75d312d0da443d,
@@ -1211,6 +1242,66 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 0.1
   minSpeed: 0.1
+  speedFalloff:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: -0.0035324097
+      value: 0.0017089844
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.68723047
+      value: 0.0010760427
+      inSlope: 0.0034116618
+      outSlope: 0.0034116618
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 1
+    - serializedVersion: 3
+      time: 0.81100327
+      value: 0.08955602
+      inSlope: 1.0180863
+      outSlope: 1.0180863
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.75406814
+    - serializedVersion: 3
+      time: 0.84597725
+      value: 0.8997496
+      inSlope: 4.323437
+      outSlope: 4.323437
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.20932686
+      outWeight: 0.75559384
+    - serializedVersion: 3
+      time: 0.94962025
+      value: 0.9339668
+      inSlope: -1.8442156
+      outSlope: -1.8442156
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.37572643
+      outWeight: 0.9996009
+    - serializedVersion: 3
+      time: 1.00354
+      value: 0.0054016113
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   target: {x: 0, y: 0, z: 0}
 --- !u!114 &863175571
 MonoBehaviour:
@@ -1268,6 +1359,19 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.010144775
   m_Center: {x: 0.000034133438, y: -0.00007752375, z: -0.00010706343}
+--- !u!114 &863175575
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 863175566}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7fd7d5154c6874408b99f13982994c22, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 821784592}
 --- !u!4 &873428841 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8842665695432606486, guid: 53887e219b3754d82b86fb6857d65d7f,
@@ -2471,7 +2575,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1680830109
 Transform:
   m_ObjectHideFlags: 0
@@ -2600,6 +2704,7 @@ Transform:
   - {fileID: 405768966}
   - {fileID: 14345153}
   - {fileID: 1301719689}
+  - {fileID: 821784592}
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

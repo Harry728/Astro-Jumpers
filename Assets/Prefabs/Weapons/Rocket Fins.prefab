@@ -100,8 +100,10 @@ MonoBehaviour:
   spinUpDuration: 4
   hoverDuration: 2
   arcDuration: 1
+  faceTargetSpeed: 5
   launchDuration: 0.5
   proximityTolerance: 0.1
+  faceAngleTolerance: 30
   maxJudder: 0.005
 --- !u!136 &8234471692596433204
 CapsuleCollider:

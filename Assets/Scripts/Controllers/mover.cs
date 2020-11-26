@@ -8,8 +8,11 @@ public class Mover : MonoBehaviour
     [SerializeField] float speed = 1f;
     [Range (0, 100)]
     [SerializeField] float minSpeed = 1f;
+    [SerializeField] AnimationCurve speedFalloff;
 
     public Vector3 target;
+
+    float totalDistanceToTarget = 0f;
 
     private void Awake()
     {
@@ -20,7 +23,17 @@ public class Mover : MonoBehaviour
 
     void Update()
     {
+        if (totalDistanceToTarget == 0f) {
+            totalDistanceToTarget = Mathf.Abs(Vector3.Distance(transform.position, target));
+        }
+        float distanceToTarget = Mathf.Abs(Vector3.Distance(transform.position, target));
+        float damper = speedFalloff.Evaluate(distanceToTarget / totalDistanceToTarget);
         transform.position =
-            Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
+            Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime * damper);
+    }
+
+    public void SetTarget(Transform target)
+    {
+        this.target = target.position;
     }
 }

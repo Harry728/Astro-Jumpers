@@ -12,6 +12,7 @@ public class TESTSpecialWeapons : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space)) {
             NextWeapon();
+            return;
         }
     }
 
@@ -21,9 +22,8 @@ public class TESTSpecialWeapons : MonoBehaviour
             return;
         }
         nextWeapon += 1;
-        if (nextWeapon > specialWeapons.Length) {
-            nextWeapon = -1;
-            return;
+        if (nextWeapon >= specialWeapons.Length) {
+            nextWeapon = 0;
         }
         WeaponBattery battery = GetComponent<WeaponBattery>();
         battery.SpinUpWeapon(specialWeapons[nextWeapon]);
