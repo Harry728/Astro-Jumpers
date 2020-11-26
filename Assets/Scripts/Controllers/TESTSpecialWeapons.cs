@@ -23,6 +23,7 @@ public class TESTSpecialWeapons : MonoBehaviour
         nextWeapon += 1;
         if (nextWeapon > specialWeapons.Length) {
             nextWeapon = -1;
+            return;
         }
         WeaponBattery battery = GetComponent<WeaponBattery>();
         battery.SpinUpWeapon(specialWeapons[nextWeapon]);

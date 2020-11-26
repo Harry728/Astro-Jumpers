@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class SpecialWeapon : MonoBehaviour
 {
-    enum ACTIONS {NONE, SPINUP, HOVER, LAUNCH};
+    enum ACTIONS {NONE, SPINUP, HOVER, ARC, LAUNCH};
 
     public GameObject prefab = null;
     [SerializeField] float spinUpDuration = 10f;
     [SerializeField] float hoverDuration = 3f;
+    [SerializeField] float arcDuration = 2f;
+    [SerializeField] float launchDuration = 0.5f;
     [SerializeField] float proximityTolerance = 0.1f;
     [SerializeField] float maxJudder = 0.1f;
     
@@ -19,11 +21,13 @@ public class SpecialWeapon : MonoBehaviour
     float actionTime = 0f;
     float distance = 0f;
     Vector3 hoverPosition = Vector3.zero;
+    Transform target;
 
     private void Start() 
     {
         action = (int) ACTIONS.SPINUP;
         actionTime = spinUpDuration;
+        target = GameObject.FindWithTag("Moon").transform;
     }
 
     private void FixedUpdate() 
@@ -36,6 +40,10 @@ public class SpecialWeapon : MonoBehaviour
             SpinUp();
         } else if (action == (int) ACTIONS.HOVER) {
             Hover();
+        } else if (action == (int) ACTIONS.ARC) {
+            Arc();
+        } else if (action == (int) ACTIONS.LAUNCH) {
+            Launch();
         }
      }
 
@@ -47,24 +55,52 @@ public class SpecialWeapon : MonoBehaviour
 
     void SpinUp()
     {
-        if (distance == 0f) {
-            distance = Vector3.Distance(silo.hoverPoint.position,
-                                        transform.position)
-                                        / (spinUpDuration / Time.fixedDeltaTime);
-        }
-        transform.position = Vector3.MoveTowards(transform.position,
-                                                   silo.hoverPoint.position,
-                                                   distance);
-        if (Mathf.Abs(Vector3.Distance(silo.hoverPoint.position, transform.position)) <= proximityTolerance) {
+        if (MoveMissile(silo.hoverPoint, spinUpDuration)) {
             action = (int) ACTIONS.HOVER;
             hoverPosition = transform.position;
-        } 
+            timer = 0f;
+        }
     }
 
     void Hover()
     {
+        if (timer >= hoverDuration) {
+            action = (int) ACTIONS.ARC;
+            distance = 0f;
+            return;
+        }
         transform.position = new Vector3(hoverPosition.x += Random.Range(-maxJudder, maxJudder),
                                          hoverPosition.y += Random.Range(-maxJudder, +maxJudder),
                                          hoverPosition.z += Random.Range(-maxJudder, +maxJudder));
+    }
+
+    void Arc()
+    {
+        if (MoveMissile(silo.arcPoint, arcDuration)) {
+            action = (int) ACTIONS.LAUNCH;
+            distance = 0f;
+        }
+    }
+
+    void Launch()
+    {
+        MoveMissile(target, launchDuration);
+        transform.LookAt(target.position);
+    }
+
+    bool MoveMissile(Transform targetTransform, float duration)
+    {
+        if (distance == 0f) {
+            distance = Vector3.Distance(targetTransform.position,
+                                        transform.position)
+                                        / (duration / Time.fixedDeltaTime);
+        }
+        transform.position = Vector3.MoveTowards(transform.position,
+                                                   targetTransform.position,
+                                                   distance);
+        if (Mathf.Abs(Vector3.Distance(targetTransform.position, transform.position)) <= proximityTolerance) {
+            return true;
+        } 
+        return false;
     }
 }

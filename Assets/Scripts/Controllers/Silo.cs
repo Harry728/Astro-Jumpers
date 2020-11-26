@@ -6,4 +6,5 @@ public class Silo : MonoBehaviour
 {
     public Transform launchPoint = null;
     public Transform hoverPoint = null;
+    public Transform arcPoint = null;
 }
