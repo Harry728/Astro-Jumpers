@@ -49,7 +49,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 436674421834967350}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -111,6 +111,6 @@ MonoBehaviour:
   - {fileID: 4893985935920840622, guid: 4acaefe5424e24fb892c1c985000efc6, type: 3}
   locations:
   - {fileID: 8842665695432606486}
-  minFrequency: 5
-  maxFrequency: 20
-  maxNumber: 4
+  minFrequency: 1
+  maxFrequency: 5
+  maxNumber: 5

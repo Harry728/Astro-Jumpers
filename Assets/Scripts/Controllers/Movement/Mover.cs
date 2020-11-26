@@ -28,8 +28,13 @@ public class Mover : MonoBehaviour
         }
         float distanceToTarget = Mathf.Abs(Vector3.Distance(transform.position, target));
         float damper = speedFalloff.Evaluate(distanceToTarget / totalDistanceToTarget);
-        transform.position =
-            Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime * damper);
+        if (damper == 0f) {
+            transform.position =
+                Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
+        } else {
+            transform.position =
+                Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime * damper);
+        }
     }
 
     public void SetTarget(Transform target)

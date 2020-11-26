@@ -6,6 +6,8 @@ public class Meteor : MonoBehaviour
 {
     [SerializeField] GameObject explosion = null;
 
+    Spawner spawner = null;
+
     void Awake()
     {
         Rotator rotator = gameObject.GetComponent<Rotator>();
@@ -19,14 +21,16 @@ public class Meteor : MonoBehaviour
                 Vector3 point = other.ClosestPoint(transform.position);
                 Instantiate (explosion, point, Quaternion.identity, null);
             }
+            spawner.ClearSpawned(this);
             Destroy(gameObject);
         }
     }
 
-    public void SetTarget(Vector3 target)
+    public void SetTarget(Vector3 target, Spawner spawner)
     {
         Mover mover = gameObject.GetComponent<Mover>();
         mover.target = target;
         mover.enabled = true;
+        this.spawner = spawner;
     }
 }

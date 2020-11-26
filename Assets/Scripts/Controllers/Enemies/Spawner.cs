@@ -16,9 +16,11 @@ public class Spawner : MonoBehaviour
     GameObject[] targets;
     IEnumerator coroutine;
     float nextSpawnDelay = 0f;
+    ArrayList spawned = null;
 
     void Start()
     {
+        spawned = new ArrayList();
         if (meteors == null || meteors.Length == 0) {
             Destroy(this);
         }
@@ -46,11 +48,20 @@ public class Spawner : MonoBehaviour
             yield return new WaitForSeconds(nextSpawnDelay);
             GetSpawnDelay();
             Vector3 target = GetTargetPosition();
-            if (transform.childCount < maxNumber) {
-                GameObject spawned = Instantiate(meteors[Random.Range(0, meteors.Length - 1)],
-                            locations[Random.Range(0, locations.Length - 1)]);
-                Meteor meteor = spawned.GetComponent<Meteor>();
-                meteor.SetTarget(target);
+            if (spawned.Count < maxNumber) {
+                int randomMeteor = Random.Range(0, meteors.Length - 1);
+                int randomLocation = Random.Range(0, locations.Length - 1);
+                if (meteors == null || locations == null ||
+                    meteors.Length == 0 || locations.Length == 0 ||
+                    meteors[randomMeteor] == null || locations[randomLocation] == null) {
+                    yield return null;
+                }
+                GameObject newSpawned = Instantiate(meteors[randomMeteor],
+                            locations[randomLocation].position,
+                            Quaternion.identity, null);
+                Meteor meteor = newSpawned.GetComponent<Meteor>();
+                meteor.SetTarget(target, this);
+                spawned.Add(meteor);
             }
         }
     }
@@ -66,5 +77,10 @@ public class Spawner : MonoBehaviour
                                             plane.transform.position.y,
                                             (Random.Range(min.z*5, max.z*5)));
         return target;
+    }
+
+    public void ClearSpawned(Meteor meteor)
+    {
+        spawned.Remove(meteor);
     }
 }
