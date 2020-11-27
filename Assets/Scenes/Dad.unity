@@ -973,6 +973,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   specialWeapons:
   - {fileID: 190058697042664655, guid: bddcafc17c7624e3ab47bba9d3f03edc, type: 3}
+  - {fileID: 1058527860920425075, guid: 3047295089bab4d7aba16dcb2de414ed, type: 3}
+  - {fileID: 1992674127347557505, guid: f8ed71712a93b4dcbb653e37f58f23e2, type: 3}
 --- !u!4 &352413788 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8842665695432606486, guid: 53887e219b3754d82b86fb6857d65d7f,
