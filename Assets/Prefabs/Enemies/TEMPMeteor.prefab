@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 6521325350550258931}
   - component: {fileID: 2861859229923914242}
   - component: {fileID: -2718276160333591916}
+  - component: {fileID: -786604314544495878}
   m_Layer: 0
   m_Name: TEMPMeteor
   m_TagString: Meteor
@@ -111,8 +112,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48152da71e16645f08238102d3c58f7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 60
-  minSpeed: 40
+  speed: 13
+  minSpeed: 12
   speedFalloff:
     serializedVersion: 2
     m_Curve:
@@ -180,6 +181,45 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 1
   maintainScale: 1
+--- !u!114 &-786604314544495878
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4893985935920840622}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48152da71e16645f08238102d3c58f7d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 60
+  minSpeed: 40
+  speedFalloff:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  target: {x: 0, y: 0, z: 0}
 --- !u!1001 &5417232949571495919
 PrefabInstance:
   m_ObjectHideFlags: 0

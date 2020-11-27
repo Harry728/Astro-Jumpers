@@ -16,13 +16,16 @@ public class Meteor : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag.Equals("Bumper")) {
+        if (other.tag.Equals("Bumper") || other.tag.Equals("Bullet")) {
             if (explosion != null) {
                 Vector3 point = other.ClosestPoint(transform.position);
                 Instantiate (explosion, point, Quaternion.identity, null);
             }
             spawner.ClearSpawned(this);
             Destroy(gameObject);
+            if (other.tag.Equals("Bullet")) {
+                Destroy(other.gameObject);
+            }
         }
     }
 
