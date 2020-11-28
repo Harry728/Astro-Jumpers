@@ -5,6 +5,9 @@ using UnityEngine;
 public class Moon : MonoBehaviour
 {
     [SerializeField] Transform target = null;
+    [SerializeField] int damage = 100;
+
+    Ground ground = null;
 
     private void Start()
     {
@@ -13,5 +16,13 @@ public class Moon : MonoBehaviour
             Destroy(gameObject);
         }
         GetComponent<Mover>().SetTarget(target);
+        ground = GameObject.Find("Ground").GetComponent<Ground>();
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag.Equals("Bumper") || other.name.Equals("Ground")) {
+            ground.TakeDamage(damage);
+        }
     }
 }
