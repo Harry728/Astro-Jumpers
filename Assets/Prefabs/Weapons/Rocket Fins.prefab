@@ -133,6 +133,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   explosion: {fileID: 546270342064906437, guid: 1dc781d0d4c6b452e9872bb38e746c08,
     type: 3}
+  damage: 5
 --- !u!1001 &180908436052139845
 PrefabInstance:
   m_ObjectHideFlags: 0

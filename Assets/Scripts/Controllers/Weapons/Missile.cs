@@ -5,6 +5,7 @@ using UnityEngine;
 public class Missile : MonoBehaviour
 {
     [SerializeField] GameObject explosion = null;
+    [SerializeField] int damage = 1;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -14,6 +15,10 @@ public class Missile : MonoBehaviour
             {
                 Vector3 point = other.ClosestPoint(transform.position);
                 Instantiate(explosion, point, Quaternion.identity, null);
+            }
+            Moon moon = other.GetComponent<Moon>();
+            if (moon != null) {
+                moon.TakeDamage(damage);
             }
             Destroy(gameObject);
         }

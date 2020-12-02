@@ -112,5 +112,5 @@ MonoBehaviour:
   locations:
   - {fileID: 8842665695432606486}
   minFrequency: 1
-  maxFrequency: 1
+  maxFrequency: 3
   maxNumber: 10

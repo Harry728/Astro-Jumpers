@@ -4,17 +4,17 @@ using UnityEngine;
 using UnityEngine.UI;
 using System;
 
-public class EarthOMeter : MonoBehaviour
+public class HealthOMeter : MonoBehaviour
 {
-    Image earthImage = null;
+    Image ometerImage = null;
 
-    private void Start() 
+    private void Awake() 
     {
-        earthImage = GetComponent<Image>();
+        ometerImage = GetComponent<Image>();
     }
 
     public void ApplyDamage(float healthRatio)
     {
-        earthImage.fillAmount = 1 - healthRatio;
+        ometerImage.fillAmount = 1 - healthRatio;
     }
 }

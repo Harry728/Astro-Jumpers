@@ -4,9 +4,5 @@ using UnityEngine;
 
 public class GameController : MonoBehaviour
 {
-    Ground ground = null;
-
-    private void Start() {
-        ground = GameObject.Find("Ground").GetComponent<Ground>();
-    }
+    float timer = 0f;
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Ground : MonoBehaviour
 {
-    [SerializeField] EarthOMeter earthOMeter = null;
+    [SerializeField] HealthOMeter healthOMeter = null;
     public Color fadeToColor = new Color(0, 0, 0, 0);
 
     Material groundMaterial;
@@ -34,6 +34,6 @@ public class Ground : MonoBehaviour
         float healthRatio = 1 - ((float) health / (float) maxHealth);
         Color newColor = Color.Lerp(color, fadeToColor, healthRatio);
         groundMaterial.color = newColor;
-        earthOMeter.ApplyDamage(healthRatio);
+        healthOMeter.ApplyDamage(healthRatio);
     }
 }
